@@ -13,7 +13,7 @@ public class PlayerTouchDetector : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKey(KeyCode.Mouse0))
         {
             _lastTouchPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _lastTouchPosition.z = 0f;

@@ -9,10 +9,6 @@ public class ProjectileBubble : Bubble
     {
         _myProjectile = GetComponent<Projectile>();
     }
-    public ProjectileBubble(BubbleColorType bubble) : base(bubble)
-    {
-       // MyBubbleColor = bubble;
-    }
     public void StartMoving(Vector3 direction)
     {
         _myProjectile.StartMove(direction);
@@ -24,10 +20,38 @@ public class ProjectileBubble : Bubble
             var collisionBubble = collision.gameObject.GetComponent<Bubble>();
             if (collisionBubble == null) return;
 
-            if (collisionBubble.BubbleColor == BubbleColor)
+            if (collisionBubble.BubbleColor == BubbleColor) collisionBubble.Burst();
+            else ConnectWithBubbles(collisionBubble);
+
+            Destroy(gameObject);
+        }
+    }
+    private void ConnectWithBubbles(Bubble collisionBubble)
+    {
+        FindNeighboursWithColor(BubbleColorType.Empty);
+
+        var closestEmptyBubble = FindClosestBubble();
+
+        closestEmptyBubble.BubbleColor = BubbleColor;
+    /*    closestEmptyBubble.FindNeighboursWithColor(BubbleColor);
+        foreach(var neighbour in closestEmptyBubble.Neighbours)
+        collisionBubble.Neighbours.Add(closestEmptyBubble);
+    */
+    }
+    private Bubble FindClosestBubble()
+    {
+        var closestEmptyBubble = Neighbours[0];
+        var distanceToClosestTarget = Vector2.Distance(transform.position, closestEmptyBubble.transform.position);
+
+        foreach (var neighbour in Neighbours)
+        {
+            var distanceToEmptyBubble = Vector2.Distance(transform.position, neighbour.transform.position);
+            if (distanceToEmptyBubble < distanceToClosestTarget)
             {
-                collisionBubble.Burst();
+                closestEmptyBubble = neighbour;
+                distanceToClosestTarget = distanceToEmptyBubble;
             }
         }
+        return closestEmptyBubble;
     }
 }

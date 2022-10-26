@@ -3,48 +3,56 @@ using UnityEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Collider2D))]
 public class Bubble : MonoBehaviour
 {
 
     [SerializeField] protected LayerMask BubblesLayer;
-    [SerializeField] protected BubbleColorType MyBubbleColor;
+    [SerializeField] private BubbleColorType _myBubbleColor;
     [SerializeField] private float _neighboursDetectRadius;
-    public BubbleColorType BubbleColor => MyBubbleColor;
+    public BubbleColorType BubbleColor
+    {
+        get => _myBubbleColor;
+        set
+        {
+            _myBubbleColor = value;
+            VisualisateMyColorByType();
+        }
+    }
+    public bool IsActive { get; set; }
     public List<Bubble> Neighbours;
 
     private SpriteRenderer mySpriteRenderer;
-    public bool IsActive { get; set; }
+    private Collider2D myCollider;
     private void Awake()
     {
         Neighbours = new List<Bubble>(10);
-        mySpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-    private void Start()
-    {
-    }
-    public Bubble(BubbleColorType bubbleColor)
-    {
-        MyBubbleColor = bubbleColor;
     }
     private void OnEnable()
     {
+        if(mySpriteRenderer == null)
+        {
+            mySpriteRenderer = GetComponent<SpriteRenderer>();
+            myCollider = GetComponent<Collider2D>();
+        }
         VisualisateMyColorByType();
         IsActive = true;
-        try
-        {
-            FindNeighbours();
-        }
-        catch
-        {
-            FindNeighbours();
-        }
+        FindNeighboursWithColor(BubbleColor);
+    }
+    private void Start()
+    {
+
+        FindNeighboursWithColor(BubbleColor);
     }
     private void VisualisateMyColorByType()
     {
+        mySpriteRenderer.enabled = true;
+        myCollider.isTrigger = false;
         switch (BubbleColor)
         {
-            case BubbleColorType.None:
-                gameObject.SetActive(false);
+            case BubbleColorType.Empty:
+                mySpriteRenderer.enabled = false;
+                myCollider.isTrigger = true;
                 break;
             case BubbleColorType.Blue:
                 mySpriteRenderer.color = Color.blue;
@@ -58,19 +66,21 @@ public class Bubble : MonoBehaviour
         }
 
     }
-    protected void FindNeighbours()
+    public void FindNeighboursWithColor(BubbleColorType color)
     {
+        Neighbours.Clear();
         Collider2D[] results = new Collider2D[10];
         Physics2D.OverlapCircleNonAlloc
             (transform.position,
             _neighboursDetectRadius,
             results,
             BubblesLayer);
+
         foreach(var result in results)
         {
             if (result == null) continue;
             var resultBubble = result.GetComponent<Bubble>();
-            if (resultBubble == null || resultBubble == this) continue;
+            if (resultBubble == null || resultBubble == this || resultBubble.BubbleColor != color) continue;
             Neighbours.Add(resultBubble);
         }
     }
@@ -81,7 +91,7 @@ public class Bubble : MonoBehaviour
         {
             TryBurstNeighbours();
         }
-        gameObject.SetActive(false);
+        BubbleColor = BubbleColorType.Empty;
     }
     private void TryBurstNeighbours()
     {
@@ -105,15 +115,15 @@ public class Bubble : MonoBehaviour
     }
     private void OnValidate()
     {
-        gameObject.SetActive(true);
         mySpriteRenderer = GetComponent<SpriteRenderer>();
-        //VisualisateMyColorByType();
+        myCollider = GetComponent<Collider2D>();
+        VisualisateMyColorByType();
     }
 #endif
 }
 public enum BubbleColorType
 {
-    None,
+    Empty,
     Red,
     Green,
     Blue

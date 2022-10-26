@@ -15,9 +15,8 @@ public class Projectile : MonoBehaviour
     }
     public void StartMove(Vector3 direction)
     {
+        if (_isMoving) return;
         myRigidBody.AddForce(direction * _speed);
-
-        Debug.Log(direction);
     }
     public void StopMoving()
     {
