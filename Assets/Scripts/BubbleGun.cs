@@ -15,7 +15,6 @@ public class BubbleGun : MonoBehaviour
     [Inject] private PauseController _pauseController;
     private ProjectileBubble _currentProjectileBubble;
     
-
     private PlayerTouchDetector _playerTouchDetector;
     private IBubblesGenerator _bubbleGenerator;
     private void Awake()

@@ -1087,6 +1087,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (4)
@@ -1139,12 +1143,20 @@ PrefabInstance:
       propertyPath: _bubbleColor
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1432,6 +1444,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble
@@ -1479,6 +1495,22 @@ PrefabInstance:
     - target: {fileID: 8101287029140108034, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
@@ -5262,6 +5294,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (2)
@@ -5311,8 +5347,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: _neighboursDetectRadius
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
@@ -6657,6 +6709,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (6)
@@ -6709,12 +6765,20 @@ PrefabInstance:
       propertyPath: _bubbleColor
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7313,7 +7377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90df77c12fd9c4e4db93d83abef4bf8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _generateOnStart: 1
+  _generateOnStart: 0
   _bubbles:
   - {fileID: 8101287028279829301}
   - {fileID: 2102501421}
@@ -7419,6 +7483,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (3)
@@ -7466,6 +7534,22 @@ PrefabInstance:
     - target: {fileID: 8101287029140108034, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
@@ -7971,6 +8055,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (5)
@@ -8023,12 +8111,20 @@ PrefabInstance:
       propertyPath: _bubbleColor
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8056,6 +8152,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 482324041}
     m_Modifications:
+    - target: {fileID: 5486634052653023339, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108033, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_Name
       value: Bubble (1)
@@ -8103,6 +8203,22 @@ PrefabInstance:
     - target: {fileID: 8101287029140108034, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108035, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: _myBubbleColor
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108044, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8874ddc24a899ee468d73d5626bbd32b, type: 3}
@@ -8527,26 +8643,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4256002602263901432, guid: a1bd5b2a56297664b9eaee06b10181a0, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1bd5b2a56297664b9eaee06b10181a0, type: 3}
---- !u!1 &4256002602692890573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4256002602263901436, guid: a1bd5b2a56297664b9eaee06b10181a0, type: 3}
-  m_PrefabInstance: {fileID: 4256002602692890572}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4256002602692890574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4256002602692890573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a78a691095f0a8499f80d74fa029f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7829982975481001095
 PrefabInstance:
   m_ObjectHideFlags: 0

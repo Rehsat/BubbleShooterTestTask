@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class Bubble : MonoBehaviour
         set
         {
             _myBubbleColor = value;
+            OnBubbleColorChange?.Invoke(_myBubbleColor);
             VisualisateMyColorByType();
         }
     }
@@ -24,6 +26,8 @@ public class Bubble : MonoBehaviour
 
     private SpriteRenderer mySpriteRenderer;
     private Collider2D myCollider;
+
+    public Action<BubbleColorType> OnBubbleColorChange;
     private void Awake()
     {
         Neighbours = new List<Bubble>(10);
