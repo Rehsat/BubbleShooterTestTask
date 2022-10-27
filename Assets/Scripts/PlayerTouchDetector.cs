@@ -1,11 +1,13 @@
 using UnityEngine;
 using System;
+using Zenject;
 
 public class PlayerTouchDetector : MonoBehaviour
 {
+    [Inject] private PlayerInput _playerInput;
+
     private Vector3 _lastTouchPosition;
     private Camera _mainCamera;
-
 
     public Action<Vector3> OnTouchFineshed;
     public Action<Vector3> OnLastTouchPositionChanged;
@@ -13,17 +15,25 @@ public class PlayerTouchDetector : MonoBehaviour
     {
         _mainCamera = Camera.main;
     }
-    private void Update()
+    private void OnEnable()
     {
-        if(Input.GetKey(KeyCode.Mouse0))
-        {
-            _lastTouchPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            _lastTouchPosition.z = 0f;
-            OnLastTouchPositionChanged?.Invoke(_lastTouchPosition);
-        }
-        if(Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            OnTouchFineshed?.Invoke(_lastTouchPosition);
-        }
+        _playerInput.OnTouch += UpdateLastTouchPositonInfo;
+        _playerInput.OnTouchFinished += InvokeFinshTouchAction;
     }
+    private void UpdateLastTouchPositonInfo()
+    {
+        _lastTouchPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _lastTouchPosition.z = 0f;
+        OnLastTouchPositionChanged?.Invoke(_lastTouchPosition);
+    }
+    private void InvokeFinshTouchAction()
+    {
+        OnTouchFineshed?.Invoke(_lastTouchPosition);
+    }
+    private void OnDisable()
+    {
+        _playerInput.OnTouch -= UpdateLastTouchPositonInfo;
+        _playerInput.OnTouchFinished -= InvokeFinshTouchAction;
+    }
+
 }

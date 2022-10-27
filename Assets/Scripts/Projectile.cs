@@ -1,25 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
+using Zenject;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
+
+    [Inject] private PauseController _pauseController;
+    private Vector3 _velocityBeforePause;
+
     private bool _isMoving;
-    private Rigidbody2D myRigidBody;
+    private Rigidbody2D _myRigidBody;
 
     private void Awake()
     {
-        myRigidBody = GetComponent<Rigidbody2D>();
+        _myRigidBody = GetComponent<Rigidbody2D>();
+    }
+    private void OnEnable()
+    {
+        _pauseController.OnPauseStateChanged += HandlePause;
     }
     public void StartMove(Vector3 direction)
     {
         if (_isMoving) return;
-        myRigidBody.AddForce(direction * _speed);
+        _myRigidBody.AddForce(direction * _speed);
     }
     public void StopMoving()
     {
-        myRigidBody.velocity = Vector2.zero;
+        _myRigidBody.velocity = Vector2.zero;
+    }
+    private void HandlePause(bool pauseState)
+    {
+        if(pauseState == true)
+        {
+            _velocityBeforePause = _myRigidBody.velocity;
+            StopMoving();
+        }
+        else
+        {
+            _myRigidBody.velocity = _velocityBeforePause;
+        }
+    }
+    private void OnDisable()
+    {
+        _pauseController.OnPauseStateChanged -= HandlePause;
     }
 }

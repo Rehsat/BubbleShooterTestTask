@@ -11,7 +11,8 @@ public class BubbleGun : MonoBehaviour
 
     [SerializeField] private BubbleColorType[] _projectilesQueue;
     [SerializeField] private ProjectileBubble _projectileBubblePrefab;
-    [SerializeField] private ProjectileBubble _projectileBubble;
+    
+    private ProjectileBubble _currentProjectileBubble;
     
 
     private PlayerTouchDetector _playerTouchDetector;
@@ -33,16 +34,16 @@ public class BubbleGun : MonoBehaviour
     }
     private void TryThrowBubble(Vector3 playerTouchPosition)
     {
-        if (_projectileBubble == null) return;
+        if (_currentProjectileBubble == null) return;
         var moveDirection = playerTouchPosition - transform.position;
-        _projectileBubble.StartMoving(moveDirection.normalized);
+        _currentProjectileBubble.StartMoving(moveDirection.normalized);
 
-        _projectileBubble.OnCollisionWithBubble += StartGenerateNewBubble;
+        _currentProjectileBubble.OnCollisionWithBubble += StartGenerateNewBubble;
     }
     private void StartGenerateNewBubble()
     {
-        _projectileBubble.OnCollisionWithBubble -= StartGenerateNewBubble;
-        _projectileBubble = null;
+        _currentProjectileBubble.OnCollisionWithBubble -= StartGenerateNewBubble;
+        _currentProjectileBubble = null;
         StartCoroutine(GeneratingBubble());
     }
     private IEnumerator GeneratingBubble()
@@ -55,7 +56,7 @@ public class BubbleGun : MonoBehaviour
     {
         var newBubble = Instantiate(_projectileBubblePrefab, transform.position, Quaternion.identity);
         newBubble.BubbleColor = color;
-        _projectileBubble = newBubble;
+        _currentProjectileBubble = newBubble;
     }
     private void OnDisable()
     {

@@ -1,9 +1,11 @@
 using UnityEngine;
 using System;
+using Zenject;
 
 [RequireComponent(typeof(Projectile))]
 public class ProjectileBubble : Bubble
 {
+
     private Projectile _myProjectile;
     private bool _isCollided;
 
