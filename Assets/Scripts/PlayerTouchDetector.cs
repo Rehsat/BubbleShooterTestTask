@@ -3,10 +3,12 @@ using System;
 
 public class PlayerTouchDetector : MonoBehaviour
 {
-    public Action<Vector3> OnTouchDetected;
     private Vector3 _lastTouchPosition;
     private Camera _mainCamera;
-    public GameObject testSquare;
+
+
+    public Action<Vector3> OnTouchFineshed;
+    public Action<Vector3> OnLastTouchPositionChanged;
     private void Awake()
     {
         _mainCamera = Camera.main;
@@ -17,11 +19,11 @@ public class PlayerTouchDetector : MonoBehaviour
         {
             _lastTouchPosition = _mainCamera.ScreenToWorldPoint(Input.mousePosition);
             _lastTouchPosition.z = 0f;
+            OnLastTouchPositionChanged?.Invoke(_lastTouchPosition);
         }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
-            OnTouchDetected?.Invoke(_lastTouchPosition);
-            //Instantiate(testSquare, _lastTouchPosition, Quaternion.identity);
+            OnTouchFineshed?.Invoke(_lastTouchPosition);
         }
     }
 }

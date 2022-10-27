@@ -37,12 +37,12 @@ public class Bubble : MonoBehaviour
         }
         VisualisateMyColorByType();
         IsActive = true;
-        FindNeighboursWithColor(BubbleColor);
+      //  DetectNeighbours();
     }
     private void Start()
     {
 
-        FindNeighboursWithColor(BubbleColor);
+        DetectNeighbours();
     }
     private void VisualisateMyColorByType()
     {
@@ -66,7 +66,20 @@ public class Bubble : MonoBehaviour
         }
 
     }
-    public void FindNeighboursWithColor(BubbleColorType color)
+    public Bubble[] GetNeighborsWithColor(BubbleColorType color)
+    {
+        List<Bubble> bubbleResults = new List<Bubble>(5);
+        foreach (var neighbour in Neighbours)
+        {
+            if (neighbour == null) continue;
+            var resultBubble = neighbour.GetComponent<Bubble>();
+            if (resultBubble == null || resultBubble == this || resultBubble.BubbleColor != color) continue;
+            bubbleResults.Add(resultBubble);
+        }
+
+        return bubbleResults.ToArray();
+    }
+    protected void DetectNeighbours()
     {
         Neighbours.Clear();
         Collider2D[] results = new Collider2D[10];
@@ -80,7 +93,7 @@ public class Bubble : MonoBehaviour
         {
             if (result == null) continue;
             var resultBubble = result.GetComponent<Bubble>();
-            if (resultBubble == null || resultBubble == this || resultBubble.BubbleColor != color) continue;
+            if (resultBubble == null || resultBubble == this) continue;
             Neighbours.Add(resultBubble);
         }
     }

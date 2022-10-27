@@ -2942,6 +2942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _secondsToGenerateBubble: 1
+  _bubblesToShootCount: 0
   _projectilesQueue: 
   _projectileBubblePrefab: {fileID: 6493034908500617240, guid: 9410620b84e5dc948ba0a5f72084777d, type: 3}
   _projectileBubble: {fileID: 2026604869}
@@ -2982,9 +2983,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 666254128}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a78a691095f0a8499f80d74fa029f8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ef3fea1b526abc428b50f406a094bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isCycle: 1
+  _queue: 0100000002000000020000000100000003000000
 --- !u!1 &675080925
 GameObject:
   m_ObjectHideFlags: 0
@@ -7594,6 +7597,10 @@ PrefabInstance:
     - target: {fileID: 8101287029140108033, guid: 9410620b84e5dc948ba0a5f72084777d, type: 3}
       propertyPath: m_Name
       value: ProjectileBubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 8101287029140108033, guid: 9410620b84e5dc948ba0a5f72084777d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8101287029140108034, guid: 9410620b84e5dc948ba0a5f72084777d, type: 3}
       propertyPath: m_RootOrder

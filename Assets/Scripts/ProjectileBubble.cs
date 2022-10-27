@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(Projectile))]
 public class ProjectileBubble : Bubble
 {
     private Projectile _myProjectile;
+    private bool _isCollided;
 
+    public Action OnCollisionWithBubble;
     private void Awake()
     {
         _myProjectile = GetComponent<Projectile>();
@@ -15,28 +18,48 @@ public class ProjectileBubble : Bubble
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.IsInLayer(BubblesLayer))
+        if (collision.gameObject.IsInLayer(BubblesLayer) && _isCollided == false)
         {
-            var collisionBubble = collision.gameObject.GetComponent<Bubble>();
-            if (collisionBubble == null) return;
-
-            if (collisionBubble.BubbleColor == BubbleColor) collisionBubble.Burst();
-            else ConnectWithBubbles(collisionBubble);
-
-            Destroy(gameObject);
+            HandleCollision(collision);
         }
+    }
+    private void HandleCollision(Collision2D collision)
+    {
+        var collisionBubble = collision.gameObject.GetComponent<Bubble>();
+        if (collisionBubble == null)
+        {
+            return;
+        }
+
+        _isCollided = true;
+        OnCollisionWithBubble?.Invoke();
+
+        if (collisionBubble.BubbleColor == BubbleColor)
+        {
+            collisionBubble.Burst();
+        }
+        else
+        {
+            ConnectWithBubbles(collisionBubble);
+        }
+
+        Destroy(gameObject);
     }
     private void ConnectWithBubbles(Bubble collisionBubble)
     {
-        FindNeighboursWithColor(BubbleColorType.Empty);
+        DetectNeighbours();
+        var emptyBubbles = GetNeighborsWithColor(BubbleColorType.Empty);
+        Neighbours.Clear();
+        foreach(var emptyBubble in emptyBubbles)
+        {
+            Neighbours.Add(emptyBubble);
+        }
 
         var closestEmptyBubble = FindClosestBubble();
 
         closestEmptyBubble.BubbleColor = BubbleColor;
-    /*    closestEmptyBubble.FindNeighboursWithColor(BubbleColor);
-        foreach(var neighbour in closestEmptyBubble.Neighbours)
-        collisionBubble.Neighbours.Add(closestEmptyBubble);
-    */
+        var neighboursWithSameColor = closestEmptyBubble.GetNeighborsWithColor(BubbleColor);
+        if (neighboursWithSameColor.Length > 0) closestEmptyBubble.Burst();
     }
     private Bubble FindClosestBubble()
     {
