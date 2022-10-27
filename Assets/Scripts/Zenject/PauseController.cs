@@ -8,13 +8,14 @@ public class PauseController : MonoBehaviour
 
     private bool _pauseState;
     public void ChangePauseState()
-    {
-        ChangePauseState(!_pauseState);
+    {        
+        SetPauseState(!_pauseState);
     }
-    public void ChangePauseState(bool newState)
+    public void SetPauseState(bool newState)
     {
+        if (_pauseState == newState) return;
         _pauseState = newState;
-        OnPauseStateChanged.Invoke(_pauseState);
+        OnPauseStateChanged?.Invoke(_pauseState);
     }
 }
 

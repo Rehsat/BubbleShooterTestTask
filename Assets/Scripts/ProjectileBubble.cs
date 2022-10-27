@@ -1,13 +1,19 @@
 using UnityEngine;
 using System;
-using Zenject;
-
 [RequireComponent(typeof(Projectile))]
 public class ProjectileBubble : Bubble
 {
-
     private Projectile _myProjectile;
     private bool _isCollided;
+    private PauseController _injectedPauseController;
+    public PauseController InjectedPauseController {
+        get => _injectedPauseController;
+        set
+        {
+            _injectedPauseController = value;
+            _myProjectile.InjectedPauseController = InjectedPauseController;
+        }
+    }
 
     public Action OnCollisionWithBubble;
     private void Awake()

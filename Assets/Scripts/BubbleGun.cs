@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using Zenject;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerTouchDetector))]
@@ -11,7 +11,8 @@ public class BubbleGun : MonoBehaviour
 
     [SerializeField] private BubbleColorType[] _projectilesQueue;
     [SerializeField] private ProjectileBubble _projectileBubblePrefab;
-    
+
+    [Inject] private PauseController _pauseController;
     private ProjectileBubble _currentProjectileBubble;
     
 
@@ -42,7 +43,9 @@ public class BubbleGun : MonoBehaviour
     }
     private void StartGenerateNewBubble()
     {
-        _currentProjectileBubble.OnCollisionWithBubble -= StartGenerateNewBubble;
+        if (_currentProjectileBubble == null) return;
+        _currentProjectileBubble.OnCollisionWithBubble -= StartGenerateNewBubble; 
+       
         _currentProjectileBubble = null;
         StartCoroutine(GeneratingBubble());
     }
@@ -55,7 +58,10 @@ public class BubbleGun : MonoBehaviour
     private void SpawnProjectileBubble(BubbleColorType color)
     {
         var newBubble = Instantiate(_projectileBubblePrefab, transform.position, Quaternion.identity);
+
+        newBubble.InjectedPauseController = _pauseController;
         newBubble.BubbleColor = color;
+
         _currentProjectileBubble = newBubble;
     }
     private void OnDisable()

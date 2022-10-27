@@ -6,7 +6,17 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
-    [Inject] private PauseController _pauseController;
+    private PauseController _injectedPauseController;
+    public PauseController InjectedPauseController
+    {
+        get => _injectedPauseController;
+        set
+        {
+            _injectedPauseController = value;
+            InjectedPauseController.OnPauseStateChanged += HandlePause;
+        }
+    }
+
     private Vector3 _velocityBeforePause;
 
     private bool _isMoving;
@@ -16,18 +26,15 @@ public class Projectile : MonoBehaviour
     {
         _myRigidBody = GetComponent<Rigidbody2D>();
     }
-    private void OnEnable()
-    {
-        _pauseController.OnPauseStateChanged += HandlePause;
-    }
     public void StartMove(Vector3 direction)
     {
         if (_isMoving) return;
         _myRigidBody.AddForce(direction * _speed);
+        _isMoving = true;
     }
     public void StopMoving()
     {
-        _myRigidBody.velocity = Vector2.zero;
+        _myRigidBody.velocity *= 0;
     }
     private void HandlePause(bool pauseState)
     {
@@ -43,6 +50,6 @@ public class Projectile : MonoBehaviour
     }
     private void OnDisable()
     {
-        _pauseController.OnPauseStateChanged -= HandlePause;
+        InjectedPauseController.OnPauseStateChanged -= HandlePause;
     }
 }
