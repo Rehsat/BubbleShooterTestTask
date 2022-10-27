@@ -1,15 +1,17 @@
 using UnityEngine;
-
-public abstract class AnimatedWindow : MonoBehaviour
+namespace Bubbles.UI
 {
-    private Animator _myAnimator;
-    private readonly int isShowingKey = Animator.StringToHash("is-showing");
-    private void Awake()
+    public abstract class AnimatedWindow : MonoBehaviour
     {
-        _myAnimator = GetComponent<Animator>();
-    }
-    protected void UpdateWindowShowingState(bool state)
-    {
-        _myAnimator.SetBool(isShowingKey, state);
+        private Animator _myAnimator;
+        private readonly int isShowingKey = Animator.StringToHash("is-showing");
+        private void Awake()
+        {
+            _myAnimator = GetComponent<Animator>();
+        }
+        protected void UpdateWindowShowingState(bool state)
+        {
+            _myAnimator.SetBool(isShowingKey, state);
+        }
     }
 }

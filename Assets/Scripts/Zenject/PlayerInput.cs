@@ -1,17 +1,20 @@
 using System;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+namespace Bubbles
 {
-    public Action OnTouch;
-    public Action OnTouchFinished;
-    public Action OnPauseStateChange;
-
-    private bool _pauseState;
-
-    private void Update()
+    public class PlayerInput : MonoBehaviour
     {
-        if (Input.GetKey(KeyCode.Mouse0)) OnTouch?.Invoke();
-        if (Input.GetKeyUp(KeyCode.Mouse0)) OnTouchFinished?.Invoke();
+        public Action OnTouch;
+        public Action OnTouchFinished;
+        public Action OnPauseStateChange;
+
+        private bool _pauseState;
+
+        private void Update()
+        {
+            if (Input.GetKey(KeyCode.Mouse0)) OnTouch?.Invoke();
+            if (Input.GetKeyUp(KeyCode.Mouse0)) OnTouchFinished?.Invoke();
+        }
     }
 }

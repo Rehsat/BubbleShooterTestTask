@@ -1,27 +1,30 @@
 using Zenject;
 using UnityEngine;
 using UnityEngine.UI;
+using Bubbles.UI;
 
-
-public class GameOverScreen : AnimatedWindow
+namespace Bubbles.GameStatus
 {
-    [SerializeField] private Text _title;
-    [Inject] private GameStatusData _gameStatusData;
-
-    private void OnEnable()
+    public class GameOverScreen : AnimatedWindow
     {
-        _gameStatusData.OnGameStatusChange += TryToAppear;
-    }
-    private void TryToAppear(GameStatus status)
-    {
-        if (status == GameStatus.Active) return;
+        [SerializeField] private Text _title;
+        [Inject] private GameStatusData _gameStatusData;
 
-        _title.text = "You " + status.ToString() + " !";
-        UpdateWindowShowingState(true);
+        private void OnEnable()
+        {
+            _gameStatusData.OnGameStatusChange += TryToAppear;
+        }
+        private void TryToAppear(GameStatus status)
+        {
+            if (status == GameStatus.Active) return;
 
-    }
-    private void OnDisable()
-    {
-        _gameStatusData.OnGameStatusChange -= TryToAppear;
+            _title.text = "You " + status.ToString() + " !";
+            UpdateWindowShowingState(true);
+
+        }
+        private void OnDisable()
+        {
+            _gameStatusData.OnGameStatusChange -= TryToAppear;
+        }
     }
 }

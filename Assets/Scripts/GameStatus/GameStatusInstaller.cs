@@ -1,11 +1,14 @@
 using UnityEngine;
 using Zenject;
 
-public class GameStatusInstaller : MonoInstaller
+namespace Bubbles.GameStatus
 {
-    [SerializeField] private GameStatusData _gameStatusData;
-    public override void InstallBindings()
+    public class GameStatusInstaller : MonoInstaller
     {
-        Container.Bind<GameStatusData>().FromInstance(_gameStatusData).AsSingle();
+        [SerializeField] private GameStatusData _gameStatusData;
+        public override void InstallBindings()
+        {
+            Container.Bind<GameStatusData>().FromInstance(_gameStatusData).AsSingle();
+        }
     }
 }

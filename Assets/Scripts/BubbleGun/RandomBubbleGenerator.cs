@@ -1,12 +1,15 @@
 using System;
 using UnityEngine;
 
-public class RandomBubbleGenerator : MonoBehaviour, IBubblesGenerator
+namespace Bubbles.BubbleGun
 {
-    public BubbleColorType GenerateBubble()
+    public class RandomBubbleGenerator : MonoBehaviour, IBubblesGenerator
     {
-        var bubblesEnumLength = Enum.GetValues(typeof(BubbleColorType)).Length;
-        BubbleColorType randomBubbleColor = (BubbleColorType)UnityEngine.Random.Range(1, bubblesEnumLength);
-        return randomBubbleColor;
+        public BubbleColorType GenerateBubble()
+        {
+            var bubblesEnumLength = Enum.GetValues(typeof(BubbleColorType)).Length;
+            BubbleColorType randomBubbleColor = (BubbleColorType)UnityEngine.Random.Range(1, bubblesEnumLength);
+            return randomBubbleColor;
+        }
     }
 }

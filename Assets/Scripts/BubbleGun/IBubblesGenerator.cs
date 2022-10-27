@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public interface IBubblesGenerator
+namespace Bubbles.BubbleGun
 {
-    BubbleColorType GenerateBubble();
+    public interface IBubblesGenerator
+    {
+        BubbleColorType GenerateBubble();
+    }
 }

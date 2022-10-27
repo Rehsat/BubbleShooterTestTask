@@ -1,23 +1,26 @@
 using System;
 using UnityEngine;
 
-public class GameStatusData : MonoBehaviour
+namespace Bubbles.GameStatus
 {
-    private GameStatus _status;
-    public GameStatus Status
+    public class GameStatusData : MonoBehaviour
     {
-        get => _status;
-        set
+        private GameStatus _status;
+        public GameStatus Status
         {
-            _status = value;
-            OnGameStatusChange?.Invoke(_status);
+            get => _status;
+            set
+            {
+                _status = value;
+                OnGameStatusChange?.Invoke(_status);
+            }
         }
+        public Action<GameStatus> OnGameStatusChange;
     }
-    public Action<GameStatus> OnGameStatusChange;
-}
-public enum GameStatus
-{
-    Active,
-    Win,
-    Lose
+    public enum GameStatus
+    {
+        Active,
+        Win,
+        Lose
+    }
 }

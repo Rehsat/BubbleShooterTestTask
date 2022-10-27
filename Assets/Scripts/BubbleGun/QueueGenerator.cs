@@ -2,28 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class QueueGenerator : MonoBehaviour, IBubblesGenerator
+namespace Bubbles.BubbleGun
 {
-    [SerializeField] private bool _isCycle;
-    [SerializeField] private BubbleColorType[] _queue;
-    private int _currentBubbleId;
-
-    public BubbleColorType GenerateBubble()
+    public class QueueGenerator : MonoBehaviour, IBubblesGenerator
     {
-        var generatedBubble = _queue[_currentBubbleId];
+        [SerializeField] private bool _isCycle;
+        [SerializeField] private BubbleColorType[] _queue;
+        private int _currentBubbleId;
 
-        _currentBubbleId++;
-        if(_currentBubbleId>=_queue.Length)
+        public BubbleColorType GenerateBubble()
         {
-            if(_isCycle)
+            var generatedBubble = _queue[_currentBubbleId];
+
+            _currentBubbleId++;
+            if (_currentBubbleId >= _queue.Length)
             {
-                _currentBubbleId = 0;
+                if (_isCycle)
+                {
+                    _currentBubbleId = 0;
+                }
+                else
+                {
+                    return BubbleColorType.Empty;
+                }
             }
-            else
-            {
-                return BubbleColorType.Empty;
-            }
+            return generatedBubble;
         }
-        return generatedBubble;
     }
 }
